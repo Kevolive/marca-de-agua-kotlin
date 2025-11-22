@@ -15,6 +15,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+
         docRoutes()
     }
 }
@@ -50,10 +51,16 @@ fun generarMarcaDeAgua(marcaDeAguaText: String, footerText: String): File {
 
     //pie de página
 
-    val footer = doc.createHeaderFooterPolicy().createHeader(XWPFHeaderFooterPolicy.DEFAULT)
+    val footer = doc.createHeaderFooterPolicy().createFooter(XWPFHeaderFooterPolicy.DEFAULT)
     val f = footer.createParagraph()
     f.alignment = ParagraphAlignment.CENTER
-    f.createRun().setText(footerText)
+
+
+    val piePag = f.createRun()
+    piePag.setText(footerText)
+    piePag.color = "C0C0C0"
+    piePag.fontSize = 12
+    piePag.isBold = true
 
 
     //contenido principal
